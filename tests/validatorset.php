@@ -43,5 +43,26 @@ class validatorset extends \UnitTestCase {
 			$expect_row++;
 		}
 	}
+	
+	function testAddToValidatorSet() {
+		$validator = new Set;
+		
+		$validator->addValidator('field0', new Rule\Number);
+		$validator->addValidators('field0', array(new Rule\Required, new Rule\String));
+		
+		$expect = array(
+			array('field0', 'vierbergenlars\Form\Rule\Number'),
+			array('field0', 'vierbergenlars\Form\Rule\Required'),
+			array('field0', 'vierbergenlars\Form\Rule\String'),
+		);
+		
+		$expect_row = 0;
+		
+		foreach($validator as $field=>$check) {
+			$this->assertEqual($field, $expect[$expect_row][0]);
+			$this->assertIsA($check, $expect[$expect_row][1]);
+			$expect_row++;
+		}
+	}
 
 }
