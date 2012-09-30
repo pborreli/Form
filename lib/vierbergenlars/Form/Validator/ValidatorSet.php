@@ -4,7 +4,7 @@ namespace vierbergenlars\Form\Validator;
 
 use vierbergenlars\Form\Util\NamedSet;
 
-/**e
+/**
  * A group of validators
  */
 class ValidatorSet extends NamedSet {
