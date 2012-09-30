@@ -13,8 +13,9 @@ class ValidatorSet extends NamedSet {
 
 	/**
 	 * Creates a new validatorset from an array
+	 * @param array $data An array of field names to an array of validators
 	 */
-	function __construct(array $data) {
+	function __construct(array $data = array()) {
 		parent::__construct();
 		foreach ($data as $name => $validators) {
 			if (is_array($validators)) {
