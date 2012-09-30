@@ -3,7 +3,9 @@
 namespace vierbergenlars\Form\ErrorRule;
 
 use vierbergenlars\Form\Error\Error;
-class RegEx extends Error {
+use vierbergenlars\Form\Field\Field;
+
+class RegEx implements Error {
 	private $field;
 	private $message;
 	function __construct(Field $field, $message = 'This does not match the regex.') {

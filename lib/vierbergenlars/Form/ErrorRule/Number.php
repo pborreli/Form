@@ -3,7 +3,9 @@
 namespace vierbergenlars\Form\ErrorRule;
 
 use vierbergenlars\Form\Error\Error;
-class Number extends Error {
+use vierbergenlars\Form\Field\Field;
+
+class Number implements Error {
 	private $field;
 	function __construct(Field $field) {
 		$this -> field = $field;
