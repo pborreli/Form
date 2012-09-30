@@ -2,6 +2,8 @@
 
 namespace vierbergenlars\Form\Validator;
 
+use vierbergenlars\Form\Field\Field;
+
 /**
  * Common interface for all form validators
  */
@@ -10,8 +12,8 @@ interface Validator {
 	/**
 	 * Checks wether the form is valid.
 	 *
-	 * @param mixed $data The data to verify
-	 * @return bool
+	 * @param Field $data The field to verify
+	 * @return vierbergenlars\Form\Error\Error|bool
 	 */
-	function isValid($data);
+	function isValid(Field $data);
 }
