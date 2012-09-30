@@ -9,37 +9,37 @@ class NamedSet implements \ArrayAccess, \Iterator {
 	 * The name of the current set
 	 * @var string
 	 */
-	public $current_set = null;
+	private $current_set = null;
 	/**
 	 * The id of the current set in set_keys
 	 * @var int
 	 */
-	public $current_set_id = 0;
+	private $current_set_id = 0;
 	/**
 	 * The id of the current subset
 	 * @var int
 	 */
-	public $current_id = 0;
+	private $current_id = 0;
 	/**
 	 * The length of all subsets
 	 * @var array
 	 */
-	public $set_lengths = array();
+	private $set_lengths = array();
 	/**
 	 * The keys of the set
 	 * @var array
 	 */
-	public $set_keys = array();
+	private $set_keys = array();
 	/**
 	 * The set
 	 * @var array
 	 */
-	public $set = array();
+	private $set = array();
 	/**
 	 * The length of the set
 	 * @var int
 	 */
-	public $length = 0;
+	private $length = 0;
 
 	function __construct($set) {
 		$this -> set = new ArrayObject($set);
