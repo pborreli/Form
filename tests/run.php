@@ -9,5 +9,6 @@ class TestSuite extends \TestSuite {
 	function __construct() {
 		parent::__construct('Form validator test suite');
 		$this->addFile(__DIR__.'/namedset.php');
+		$this->addFile(__DIR__.'/validatorset.php');
 	}
 }

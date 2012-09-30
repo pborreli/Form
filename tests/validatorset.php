@@ -26,9 +26,21 @@ class validatorset extends \UnitTestCase {
 				)
 			)
 		);
+		$expect = array(
+			array('username', 'vierbergenlars\Form\Rule\Required'),
+			array('username', 'vierbergenlars\Form\Rule\String'),
+			array('password', 'vierbergenlars\Form\Rule\Required'),
+			array('password', 'vierbergenlars\Form\Rule\String'),
+			array('email', 'vierbergenlars\Form\Rule\Required'),
+			array('email', 'vierbergenlars\Form\Rule\Email'),
+		);
+		
+		$expect_row = 0;
 		
 		foreach($validator as $field=>$check) {
-			var_dump($field, $check);
+			$this->assertEqual($field, $expect[$expect_row][0]);
+			$this->assertIsA($check, $expect[$expect_row][1]);
+			$expect_row++;
 		}
 	}
 
