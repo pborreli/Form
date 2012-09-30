@@ -114,5 +114,9 @@ class NamedSet implements \ArrayAccess, \Iterator {
 		unset($this -> set[$offset]);
 		$this -> setUpSet();
 	}
+	
+	function count() {
+		return $this->length;
+	}
 
 }
