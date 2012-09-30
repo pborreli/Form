@@ -1,6 +1,6 @@
 <?php
 
-namespace vierbergenlars\Form\Rule;
+namespace vierbergenlars\Form\ValidatorRule;
 
 use vierbergenlars\Form\Validator\Validator;
 

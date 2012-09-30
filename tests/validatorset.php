@@ -3,7 +3,7 @@
 namespace vierbergenlars\Form\Tests;
 
 use vierbergenlars\Form\Validator\ValidatorSet as Set;
-use vierbergenlars\Form\Rule;
+use vierbergenlars\Form\ValidatorRule;
 
 require __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/../vendor/vierbergenlars/simpletest/autorun.php';
@@ -13,26 +13,26 @@ class validatorset extends \UnitTestCase {
 		$validator = new Set(
 			array(
 				'username' => array(
-					new Rule\Required,
-					new Rule\String
+					new ValidatorRule\Required,
+					new ValidatorRule\String
 				),
 				'password' => array(
-					new Rule\Required,
-					new Rule\String
+					new ValidatorRule\Required,
+					new ValidatorRule\String
 				),
 				'email' => array(
-					new Rule\Required,
-					new Rule\Email
+					new ValidatorRule\Required,
+					new ValidatorRule\Email
 				)
 			)
 		);
 		$expect = array(
-			array('username', 'vierbergenlars\Form\Rule\Required'),
-			array('username', 'vierbergenlars\Form\Rule\String'),
-			array('password', 'vierbergenlars\Form\Rule\Required'),
-			array('password', 'vierbergenlars\Form\Rule\String'),
-			array('email', 'vierbergenlars\Form\Rule\Required'),
-			array('email', 'vierbergenlars\Form\Rule\Email'),
+			array('username', 'vierbergenlars\Form\ValidatorRule\Required'),
+			array('username', 'vierbergenlars\Form\ValidatorRule\String'),
+			array('password', 'vierbergenlars\Form\ValidatorRule\Required'),
+			array('password', 'vierbergenlars\Form\ValidatorRule\String'),
+			array('email', 'vierbergenlars\Form\ValidatorRule\Required'),
+			array('email', 'vierbergenlars\Form\ValidatorRule\Email'),
 		);
 		
 		$expect_row = 0;
@@ -47,13 +47,13 @@ class validatorset extends \UnitTestCase {
 	function testAddToValidatorSet() {
 		$validator = new Set;
 		
-		$validator->addValidator('field0', new Rule\Number);
-		$validator->addValidators('field0', array(new Rule\Required, new Rule\String));
+		$validator->addValidator('field0', new ValidatorRule\Number);
+		$validator->addValidators('field0', array(new ValidatorRule\Required, new ValidatorRule\String));
 		
 		$expect = array(
-			array('field0', 'vierbergenlars\Form\Rule\Number'),
-			array('field0', 'vierbergenlars\Form\Rule\Required'),
-			array('field0', 'vierbergenlars\Form\Rule\String'),
+			array('field0', 'vierbergenlars\Form\ValidatorRule\Number'),
+			array('field0', 'vierbergenlars\Form\ValidatorRule\Required'),
+			array('field0', 'vierbergenlars\Form\ValidatorRule\String'),
 		);
 		
 		$expect_row = 0;
