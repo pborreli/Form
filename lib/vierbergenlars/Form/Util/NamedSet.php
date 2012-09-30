@@ -41,18 +41,26 @@ class NamedSet implements \ArrayAccess, \Iterator {
 	 */
 	private $length = 0;
 
-	function __construct($set) {
+	function __construct(array $set = array()) {
 		$this -> set = new ArrayObject($set);
 		$this -> setUpSet();
 	}
 
+	function addToSet($name, $value) {
+		if (!isset($this -> set[$name]))
+			$this -> set[$name] = new ArrayObject( array());
+		$this -> set[$name][] = $value;
+		$this -> setUpSet();
+	}
+
 	private function setUpSet() {
-		$this -> set_keys = $this -> set->array_keys();
+		$this -> set_keys = $this -> set -> array_keys();
 		foreach ($this->set as $key => $value) {
-			$this -> set_lengths[$key] = $value->count();
+			$this -> set_lengths[$key] = $value -> count();
 		}
-		$this -> current_set = $this -> set_keys[0];
 		$this -> length = count($this -> set_keys);
+		if ($this -> length > 0)
+			$this -> current_set = $this -> set_keys[0];
 	}
 
 	function current() {
@@ -76,7 +84,8 @@ class NamedSet implements \ArrayAccess, \Iterator {
 
 	function rewind() {
 		$this -> current_id = 0;
-		$this -> current_set = $this -> set_keys[0];
+		if ($this -> length > 0)
+			$this -> current_set = $this -> set_keys[0];
 		$this -> current_set_id = 0;
 	}
 
