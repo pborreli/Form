@@ -1,0 +1,28 @@
+{
+    "name": "vierbergenlars/form",
+    "description": "Form validation - Period.",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "http://github.com/vierbergenlars/Form"
+        }
+    ],
+    "require": {
+        "remotecp/configurator": "1.*"
+    },
+    "require-dev": {
+        "vierbergenlars/simpletest": "1.1.*"
+    },
+    "authors": [
+        {
+            "name": "Lars Vierbergen",
+            "email": "vierbergenlars@gmail.com"
+        }
+    ],
+    "license": "MIT",
+    "autoload": {
+        "psr-0": {
+            "vierbergenlars\\Form": "lib/"
+        }
+    }
+}
