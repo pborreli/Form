@@ -4,7 +4,8 @@ namespace vierbergenlars\Form\Util;
 
 use vierbergenlars\Form\Util\ArrayObject;
 
-class NamedSet implements \ArrayAccess, \Iterator {
+class NamedSet implements \ArrayAccess, \Iterator
+{
 	/**
 	 * The name of the current set
 	 * @var string
@@ -41,19 +42,22 @@ class NamedSet implements \ArrayAccess, \Iterator {
 	 */
 	private $length = 0;
 
-	function __construct(array $set = array()) {
+	function __construct(array $set = array())
+	{
 		$this -> set = new ArrayObject($set);
 		$this -> setUpSet();
 	}
 
-	function addToSet($name, $value) {
+	function addToSet($name, $value)
+	{
 		if (!isset($this -> set[$name]))
 			$this -> set[$name] = new ArrayObject( array());
 		$this -> set[$name][] = $value;
 		$this -> setUpSet();
 	}
 
-	private function setUpSet() {
+	private function setUpSet()
+	{
 		$this -> set_keys = $this -> set -> array_keys();
 		foreach ($this->set as $key => $value) {
 			$this -> set_lengths[$key] = $value -> count();
@@ -63,15 +67,18 @@ class NamedSet implements \ArrayAccess, \Iterator {
 			$this -> current_set = $this -> set_keys[0];
 	}
 
-	function current() {
+	function current()
+	{
 		return $this -> set[$this -> current_set][$this -> current_id];
 	}
 
-	function key() {
+	function key()
+	{
 		return $this -> current_set;
 	}
 
-	function next() {
+	function next()
+	{
 		$this -> current_id++;
 		if ($this -> current_id + 1 > $this -> set_lengths[$this -> current_set]) {
 			$this -> current_id = 0;
@@ -82,14 +89,16 @@ class NamedSet implements \ArrayAccess, \Iterator {
 		}
 	}
 
-	function rewind() {
+	function rewind()
+	{
 		$this -> current_id = 0;
 		if ($this -> length > 0)
 			$this -> current_set = $this -> set_keys[0];
 		$this -> current_set_id = 0;
 	}
 
-	function valid() {
+	function valid()
+	{
 		if ($this -> current_set_id + 1 > $this -> length)
 			return false;
 		if ($this -> current_id + 1 > $this -> set_lengths[$this -> current_set])
@@ -97,26 +106,43 @@ class NamedSet implements \ArrayAccess, \Iterator {
 		return true;
 	}
 
-	function offsetExists($offset) {
+	function offsetExists($offset)
+	{
+		if ($offset instanceof Named) {
+			$offset = $offset -> getName();
+		}
 		return isset($this -> set[$offset]);
 	}
 
-	function offsetGet($offset) {
+	function offsetGet($offset)
+	{
+		if ($offset instanceof Named) {
+			$offset = $offset -> getName();
+		}
 		return $this -> set[$offset];
 	}
 
-	function offsetSet($offset, $value) {
+	function offsetSet($offset, $value)
+	{
+		if ($offset instanceof Named) {
+			$offset = $offset -> getName();
+		}
 		$this -> set[$offset] = $value;
 		$this -> setUpSet();
 	}
 
-	function offsetUnset($offset) {
+	function offsetUnset($offset)
+	{
+		if ($offset instanceof Named) {
+			$offset = $offset -> getName();
+		}
 		unset($this -> set[$offset]);
 		$this -> setUpSet();
 	}
-	
-	function count() {
-		return $this->length;
+
+	function count()
+	{
+		return $this -> length;
 	}
 
 }
