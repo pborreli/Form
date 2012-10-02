@@ -7,17 +7,31 @@ use vierbergenlars\Form\Error\ErrorSet;
 use vierbergenlars\Form\ErrorRule\GenericError;
 use vierbergenlars\Form\Field\Field;
 
-class Form {
+class Form
+{
 	protected $fields = null;
 	protected $validators = null;
 	protected $errors = null;
-	function __construct(FieldSet $fields, ValidatorSet $validators, ErrorSet $errors) {
+	/**
+	 * Creates a new form class
+	 *
+	 * @param FieldSet $fields The fieldset that contains all submitted fields
+	 * @param ValidatorSet $validators The validators to run on the field
+	 * @param ErrorSet $errors The errorset to fill with errors
+	 */
+	function __construct(FieldSet $fields, ValidatorSet $validators, ErrorSet $errors = null)
+	{
 		$this -> fields = $fields;
 		$this -> validators = $validators;
 		$this -> errors = $errors;
+		if ($errors === null) {
+			$this -> errors = new ErrorSet;
+		}
+		$this -> checkValid();
 	}
 
-	function isValid() {
+	protected function checkValid()
+	{
 		foreach ($this->validators as $fieldname => $validator) {
 			if (!isset($this -> fields[$fieldname])) {
 				$field = null;
@@ -31,13 +45,25 @@ class Form {
 				$this -> errors -> addError($fieldname, new GenericError($field, 'Validation did not pass: ' . $validator));
 			}
 		}
+	}
+
+	/**
+	 * Checks wether the form is valid
+	 * @return bool
+	 */
+	function isValid()
+	{
 		if ($this -> errors -> count() > 0) {
 			return false;
 		}
 		return true;
 	}
 
-	function getFieldErrors(Field $field) {
+	/**
+	 * Retrieves errors for a spectific field
+	 */
+	function getFieldErrors(Field $field)
+	{
 		$fieldname = $field -> getName();
 		if (!$this -> fields[$fieldname]) {
 			throw new \LogicException('This field is not defined');
@@ -45,7 +71,8 @@ class Form {
 		return $this -> errors[$fieldname];
 	}
 
-	function getFieldValidators(Field $field) {
+	function getFieldValidators(Field $field)
+	{
 		$fieldname = $field -> getName();
 		if (!$this -> fields[$fieldname]) {
 			throw new \LogicException('This field is not defined');
