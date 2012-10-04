@@ -3,11 +3,12 @@
 namespace vierbergenlars\Form\Field;
 
 use vierbergenlars\Form\Validator;
+use vierbergenlars\Form\Util\Named;
 
 /**
  * A single field.
  */
-class Field
+class Field implements Named
 {
     private $name;
     private $value;
