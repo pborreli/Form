@@ -47,4 +47,11 @@ class fieldset extends \UnitTestCase
         }
     }
 
+    public function testLateBinding()
+    {
+        $field = new Field('o');
+        $field->setValue('val');
+        $this->assertEqual($field->getValue(), 'val');
+    }
+
 }

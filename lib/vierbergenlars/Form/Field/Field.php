@@ -18,7 +18,7 @@ class Field implements Named
      * @param string $name  The identifier of the field
      * @param mixed  $value The value of the field
      */
-    public function __construct($name, $value)
+    public function __construct($name, $value = null)
     {
         if (!is_string($name)) {
             throw new \LogicException('A field name must be a string');
@@ -46,6 +46,15 @@ class Field implements Named
     }
 
     /**
+     * Sets the value of the field
+     * @param mixed $value The value of the field
+     */
+    public function setValue($value)
+    {
+        $this->value = $value;
+    }
+
+    /**
      * Checks if the field is valid
      * @param  Validator                            $validator The validator to use
      * @return vierbergenlars\Form\Error\Error|bool
@@ -54,4 +63,5 @@ class Field implements Named
     {
         return $validator->isValid($this);
     }
+
 }
