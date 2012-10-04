@@ -13,5 +13,6 @@ class TestSuite extends \TestSuite
         $this->addFile(__DIR__.'/namedset.php');
         $this->addFile(__DIR__.'/validatorset.php');
         $this->addFile(__DIR__.'/fieldset.php');
+        $this->addFile(__DIR__.'/errorset.php');
     }
 }
