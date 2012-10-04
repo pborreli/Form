@@ -3,6 +3,7 @@
 namespace vierbergenlars\Form\Validator;
 
 use vierbergenlars\Form\Util\NamedSet;
+use vierbergenlars\Form\Field\Field;
 
 /**
  * A group of validators
@@ -30,11 +31,14 @@ class ValidatorSet extends NamedSet
     /**
      * Adds a set of validators for a field
      *
-     * @param string $name       The field name
-     * @param array  $validators The validators to add
+     * @param string|Field $name       The field name
+     * @param array        $validators The validators to add
      */
     public function addValidators($name, array $validators)
     {
+        if ($name instanceof Field) {
+            $name = $name->getName();
+        }
         foreach ($validators as $validator) {
             $this -> addValidator($name, $validator);
         }
@@ -43,11 +47,14 @@ class ValidatorSet extends NamedSet
     /**
      * Adds a validator for a field
      *
-     * @param string    $name      The field name
-     * @param Validator $validator The validator to add
+     * @param string|Field $name      The field name
+     * @param Validator    $validator The validator to add
      */
     public function addValidator($name, Validator $validator)
     {
+        if ($name instanceof Field) {
+            $name = $name->getName();
+        }
         $this -> validators[$name][] = $validator;
         $this -> addToSet($name, $validator);
     }
