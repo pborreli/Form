@@ -48,7 +48,7 @@ class Form
     }
 
     /**
-     * Checks wether the form is valid
+     * Checks whether the form is valid
      * @return bool
      */
     public function isValid()
@@ -61,7 +61,7 @@ class Form
     }
 
     /**
-     * Retrieves errors for a spectific field
+     * Retrieves errors for a specific field
      */
     public function getFieldErrors(Field $field)
     {

@@ -36,7 +36,6 @@ class ErrorSet extends NamedSet
     /**
      * Adds a error for a field
      *
-     * @param string $name  The field name
      * @param Error  $error The error to add
      */
     public function addError(Error $error)

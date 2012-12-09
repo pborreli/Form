@@ -23,10 +23,10 @@ class RegEx implements Validator
         $result = preg_match($this -> regex, $field -> getValue());
 
         if (preg_last_error() !== PREG_NO_ERROR) {
-            return new REError($field, 'An error occured while checking the field');
+            return new REError($field, 'An error occurred while checking the field');
         }
 
-        return ($result == 1 ? true : new REError($field, $message));
+        return ($result == 1 ? true : new REError($field, $this -> message));
     }
 
 }

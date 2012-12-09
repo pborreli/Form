@@ -10,7 +10,7 @@ use vierbergenlars\Form\Field\Field;
 interface Validator
 {
     /**
-     * Checks wether the form is valid.
+     * Checks whether the form is valid.
      *
      * @param  Field                                $data The field to verify
      * @return vierbergenlars\Form\Error\Error|bool
